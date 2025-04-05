@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Prediction</title>
+</head>
+<body>
+    <h1>Upload an Image for Prediction</h1>
+    <form id="uploadForm">
+        <input type="file" id="imageFile" accept="image/*">
+        <button type="button" onclick="uploadImage()">Upload</button>
+    </form>
+
+    <script>
+        async function uploadImage() {
+            const fileInput = document.getElementById('imageFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select a file first!");
+                return;
+            }
+
+            const url = 'https://imageaiaanya-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/2c8e0224-3b55-4326-a7f5-0feb6600e357/classify/iterations/Iteration1/image'; // Replace with your actual endpoint
+            const headers = {
+                'Prediction-Key': 'a675a953f356471ab8e61fe0bf14eeb8',
+                'Content-Type': 'application/octet-stream',
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: headers,
+                    body: file,
+                });
+
+                const result = await response.json();
+                console.log(result);
+                alert("Prediction response received! Check the console for details.");
+                alert(JSON.stringify(result, null, 2));
+            } catch (error) {
+                console.error(error);
+                alert("An error occurred while uploading the image.");
+            }
+        }
+    </script>
+</body>
+</html>
