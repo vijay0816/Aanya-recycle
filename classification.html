@@ -39,7 +39,7 @@
                 //alert(JSON.stringify(result, null, 2));
                 let message = "";
 
-jsonData.forEach(item => {
+result.forEach(item => {
     if (item.confidence > 60) {
         message += `Result: ${item.result} (Confidence: ${item.confidence}%)\n`;
     }
