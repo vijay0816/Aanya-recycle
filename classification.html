@@ -38,8 +38,9 @@
                 alert("Prediction response received! Check the console for details.");
                 alert(JSON.stringify(result, null, 2));
    let message = "";
-
+   alert('Hello 1');
     result.predictions.forEach(prediction => {
+         alert('Hello 2');
         if (prediction.probability > 0.6) { // Confidence above 60%
             message += `Tag: ${prediction.tagName} (Probability: ${(prediction.probability * 100).toFixed(2)}%)\n`;
         }
