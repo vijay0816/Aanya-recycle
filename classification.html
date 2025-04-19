@@ -36,13 +36,11 @@
                 const result = await response.json();
                 console.log(result);
                 alert("Prediction response received! Check the console for details.");
-                alert(JSON.stringify(result, null, 2));
+                //alert(JSON.stringify(result, null, 2));
    let message = "";
-   alert('Hello 1');
     result.predictions.forEach(prediction => {
-         alert('Hello 2');
         if (prediction.probability > 0.6) { // Confidence above 60%
-            message += `Tag: ${prediction.tagName} (Probability: ${(prediction.probability * 100).toFixed(2)}%)\n`;
+            message += `Your image is ${prediction.tagName} (Confidence: ${(prediction.probability * 100).toFixed(2)}%)\n`;
         }
     });
 
@@ -52,10 +50,6 @@
         alert("No predictions above the confidence threshold.");
     }
                 
-
-if (message) {
-    alert(message);
-}
 
             } catch (error) {
                 console.error(error);
