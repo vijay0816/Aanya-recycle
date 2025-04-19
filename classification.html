@@ -37,15 +37,19 @@
                 console.log(result);
                 alert("Prediction response received! Check the console for details.");
                 alert(JSON.stringify(result, null, 2));
-                let message = "";
+   let message = "";
 
-result.predictions.forEach(item => {
-    alert('Hello 1')
-    if (item.probability > 0.6) {
-        alert('Hello 2')
-        message += `Result: ${item.tagName} (Confidence: ${item.probability}%)\n`;
+    result.predictions.forEach(prediction => {
+        if (prediction.probability > 0.6) { // Confidence above 60%
+            message += `Tag: ${prediction.tagName} (Probability: ${(prediction.probability * 100).toFixed(2)}%)\n`;
+        }
+    });
+
+    if (message) {
+        alert(message);
+    } else {
+        alert("No predictions above the confidence threshold.");
     }
-});
                 
 
 if (message) {
